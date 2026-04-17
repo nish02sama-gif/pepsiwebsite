@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Bebas Neue", sans-serif;
+  --font-sans: "DM Sans", sans-serif;
+
+  --color-pepsi-blue: #004B93;
+  --color-pepsi-red: #E32636;
+  --color-pepsi-cyan: #00BFFF;
+  --color-dark-navy: #001B3A;
+  --color-soft-grey: #9AA3B0;
+
+  --animate-bubble-rise: bubble-rise 5s ease-in infinite;
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes bubble-rise {
+    0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+    50% { opacity: 0.8; }
+    100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-dark-navy text-white font-sans antialiased overflow-x-hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display uppercase leading-[0.9] tracking-tight;
+  }
+}
+
+@layer components {
+  .bg-dots {
+    @apply fixed inset-0 pointer-events-none z-0;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
+
+  .btn-primary {
+    @apply bg-pepsi-red text-white py-4 px-10 rounded-full font-display text-xl transition-all duration-300 hover:scale-105 hover:bg-pepsi-red/90 active:scale-95 shadow-2xl shadow-pepsi-red/30 uppercase tracking-[0.1em] font-black;
+  }
+
+  .btn-secondary {
+    @apply border-2 border-pepsi-cyan text-pepsi-cyan py-4 px-10 rounded-full font-display text-xl transition-all duration-300 hover:bg-pepsi-cyan hover:text-dark-navy active:scale-95 uppercase tracking-[0.1em] font-black;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-pepsi-blue to-pepsi-cyan bg-clip-text text-transparent;
+  }
+
+  .section-padding {
+    @apply py-20 px-6 md:px-12 lg:px-24;
+  }
+
+  .container-custom {
+    @apply max-w-7xl mx-auto;
+  }
+
+  .editorial-label {
+    @apply text-xs uppercase tracking-[0.3em] text-pepsi-cyan font-bold mb-5 block;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-dark-navy;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-pepsi-cyan rounded-full;
+}
